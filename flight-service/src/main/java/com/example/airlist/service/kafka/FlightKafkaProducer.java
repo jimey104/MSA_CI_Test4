@@ -23,6 +23,7 @@ public class FlightKafkaProducer {
     public void sendFlightData(FlightReservationDto flightReservationDto) {
         try {
             String json = objectMapper.writeValueAsString(flightReservationDto); // ✅ JSON 문자열 변환
+            System.out.println("📦 JSON 확인: " + json);  // ✅ 이거 추가
             kafkaTemplate.send(topicName, json); // ✅ 문자열로 전송
             System.out.println("항공편 전송완료: " + flightReservationDto.getReservationId());
         } catch (JsonProcessingException e) {
